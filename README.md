@@ -1,30 +1,69 @@
-# Fullstack grocery finder
+# Fullstack Grocery Finder
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+A web application that helps users find grocery items across different stores, compare prices, and plan shopping trips efficiently.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/kgiangs-projects/v0-fullstack-grocery-finder)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/umqAjaVIE38)
+## Features
 
-## Overview
+- Search for grocery items across multiple stores
+- Compare prices between different retailers
+- Save shopping lists for future reference
+- Get directions to stores
+- View store locations on a map
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+## Environment Variables
 
-## Deployment
+This project requires the following environment variables to be set:
 
-Your project is live at:
+\`\`\`env
+# Google Maps API Key for geocoding and places API (server-side only)
+GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
 
-**[https://vercel.com/kgiangs-projects/v0-fullstack-grocery-finder](https://vercel.com/kgiangs-projects/v0-fullstack-grocery-finder)**
+# Google Maps ID for client-side map rendering
+NEXT_PUBLIC_GOOGLE_MAPS_ID=your_google_maps_id_here
 
-## Build your app
+# Kroger API credentials
+KROGER_CLIENT_ID=your_kroger_client_id_here
+KROGER_CLIENT_SECRET=your_kroger_client_secret_here
+\`\`\`
 
-Continue building your app on:
+## Deployment Instructions
 
-**[https://v0.dev/chat/projects/umqAjaVIE38](https://v0.dev/chat/projects/umqAjaVIE38)**
+### Prerequisites
 
-## How It Works
+1. Google Maps API key with the following APIs enabled:
+   - Maps JavaScript API
+   - Places API
+   - Geocoding API
+   - Directions API
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+2. Kroger API credentials (Client ID and Client Secret)
+
+### Deploying to Vercel
+
+1. Fork or clone this repository
+2. Create a new project on Vercel
+3. Connect your GitHub repository to Vercel
+4. Add the required environment variables in the Vercel project settings
+5. Deploy the project
+
+### Local Development
+
+1. Clone the repository
+2. Copy `.env.local.example` to `.env.local` and fill in your API keys
+3. Install dependencies with `npm install`
+4. Run the development server with `npm run dev`
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## API Integrations
+
+This project integrates with the following APIs:
+
+- Google Maps API for location services and mapping
+- Kroger API for product and store information
+
+## License
+
+[MIT](LICENSE)
+\`\`\`
+
+Now, let's update the lib/api-integration.ts file:
