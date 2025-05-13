@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button"
 import { SaveListDialog } from "./save-list-dialog"
 import { useToast } from "@/hooks/use-toast"
 import { useSearchParams } from "next/navigation"
+import { useUser } from "@/contexts/user-context"
+import { AuthDialog } from "@/components/auth/auth-dialog"
 
 interface NewSearchDialogProps {
   open: boolean
@@ -24,8 +26,10 @@ interface NewSearchDialogProps {
 
 export function NewSearchDialog({ open, onOpenChange, onConfirm, items, location }: NewSearchDialogProps) {
   const [saveDialogOpen, setSaveDialogOpen] = useState(false)
+  const [authDialogOpen, setAuthDialogOpen] = useState(false)
   const { toast } = useToast()
   const searchParams = useSearchParams()
+  const { user } = useUser()
 
   // Get the total cost if available from search params
   const getTotalCost = () => {
@@ -47,6 +51,15 @@ export function NewSearchDialog({ open, onOpenChange, onConfirm, items, location
       return
     }
 
+    // Check if user is logged in
+    if (!user) {
+      // Show auth dialog if not logged in
+      setAuthDialogOpen(true)
+      onOpenChange(false) // Close the confirmation dialog
+      return
+    }
+
+    // If logged in, proceed to save dialog
     setSaveDialogOpen(true)
     onOpenChange(false) // Close the confirmation dialog
   }
@@ -59,6 +72,11 @@ export function NewSearchDialog({ open, onOpenChange, onConfirm, items, location
   const handleSaveSuccess = () => {
     // After successfully saving, proceed with creating a new search
     onConfirm()
+  }
+
+  const handleAuthSuccess = () => {
+    // After successful authentication, open the save dialog
+    setSaveDialogOpen(true)
   }
 
   return (
@@ -82,6 +100,15 @@ export function NewSearchDialog({ open, onOpenChange, onConfirm, items, location
         </DialogContent>
       </Dialog>
 
+      {/* Auth Dialog for login/signup */}
+      <AuthDialog
+        open={authDialogOpen}
+        onOpenChange={setAuthDialogOpen}
+        defaultTab="login"
+        onSuccess={handleAuthSuccess}
+      />
+
+      {/* Save List Dialog */}
       <SaveListDialog
         open={saveDialogOpen}
         onOpenChange={setSaveDialogOpen}
