@@ -63,6 +63,3 @@ This project integrates with the following APIs:
 ## License
 
 [MIT](LICENSE)
-\`\`\`
-
-Now, let's update the lib/api-integration.ts file:
