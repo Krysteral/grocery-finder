@@ -13,8 +13,8 @@ A web application that helps users find grocery items across different stores, c
 ## Environment Variables
 
 This project requires the following environment variables to be set:
+env
 
-\`\`\`env
 # Google Maps API Key for geocoding and places API (server-side only)
 GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
 
@@ -24,7 +24,6 @@ NEXT_PUBLIC_GOOGLE_MAPS_ID=your_google_maps_id_here
 # Kroger API credentials
 KROGER_CLIENT_ID=your_kroger_client_id_here
 KROGER_CLIENT_SECRET=your_kroger_client_secret_here
-\`\`\`
 
 ## Deployment Instructions
 
